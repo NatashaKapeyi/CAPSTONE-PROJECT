@@ -1,0 +1,21 @@
+*,
+*::before
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body{
+    text-align: center;
+    
+}
+table{
+    margin:auto;
+
+}
+table, th, td {
+    border: 2px solid rgb(255, 0, 0);
+    border-collapse: collapse;
+  }
