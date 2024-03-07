@@ -46,5 +46,6 @@ Router.patch('/updateProduct',bodyParser.json(),(req, res)=>{
     }
 })
 export{
-    Router
+    Router,
+    express
 }
