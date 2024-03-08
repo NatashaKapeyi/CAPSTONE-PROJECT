@@ -45,6 +45,16 @@ Router.patch('/patchProduct/:id',bodyParser.json(),(req, res)=>{
         })
     }
 })
+Router.delete('/deleteProduct/:id',bodyParser.json(),(req, res)=>{
+    try {
+        products.deleteProduct(req, res)
+    } catch (error) {
+        res.json({
+            status: res.statusCode,
+            msg:'Failed to delete '
+        })
+    }
+})
 export{
     Router
 }

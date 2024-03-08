@@ -51,7 +51,7 @@ class Products{
         })
     }
     deleteProduct(req,res){
-        const Qry=`DELETE FROM PRODUCTS WHERE PRODCUT_ID=${req.params.id};`
+        const Qry=`DELETE FROM PRODUCTS WHERE PRODUCT_ID=${req.params.id};`
         db.query(Qry,[req.body],(error)=>{
           if(error) throw error
           res.json({
