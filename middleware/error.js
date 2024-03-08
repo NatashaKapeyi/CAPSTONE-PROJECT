@@ -1,3 +1,4 @@
+//handling error
 function errHandling(err,req, res, next){
     if(err || res.status.Code >=400){
         res.json({
