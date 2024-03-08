@@ -1,4 +1,5 @@
-import {Router,express} from "./controller/ProductController.js"
+import {userRouter, express} from "./controller/UserController.js"
+import {Router} from "./controller/ProductController.js"
 import cookieParser from "cookie-parser"
 import {errHandling} from "./middleware/error.js"
 import path from 'path'
@@ -27,11 +28,12 @@ app.use(
    cookieParser(),
    cors()
 )
-app.get('^/$|/lifechoices',(req, res)=>{
+app.get('^/$|/capstone-project',(req, res)=>{
     res.status(200).sendFile(path.join(__dirname,"./static/index.html"))
 })
+app.use('/users',userRouter)
 app.use('/products',Router)
 app.use(errHandling)
-app.listen(port, ()=>{       
+app.listen(port, ()=>{         //listen
     console.log(`Server is running on port ${port}`);
 })

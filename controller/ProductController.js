@@ -35,7 +35,7 @@ Router.post('/addProduct',bodyParser.json(),(req, res)=>{
         })
     }
 })
-Router.patch('/updateProduct',bodyParser.json(),(req, res)=>{
+Router.patch('/patchProduct',bodyParser.json(),(req, res)=>{
     try {
         products.patchProduct(req, res)
     } catch (error) {
@@ -46,6 +46,5 @@ Router.patch('/updateProduct',bodyParser.json(),(req, res)=>{
     }
 })
 export{
-    Router,
-    express
+    Router
 }
