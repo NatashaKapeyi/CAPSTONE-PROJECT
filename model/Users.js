@@ -19,6 +19,7 @@ class Users{
     }
     retrieveUser(req, res){
         const Qry =` SELECT USER_ID,USER_NAME,USER_LASTNAME,USER_AGE,USER_GENDER,USER_ROLE,USER_EMAIL,USER_PASSWORD,USER_PROFILE
+        FROM USERS
         WHERE USER_ID = ${req.params.id};
         `
         db.query(Qry,(error, result)=>{
@@ -88,8 +89,8 @@ class Users{
       }
       login(req,res){
         const {USER_EMAIL, USER_PASSWORD} = req.body
-        const Qry = `='SELECT USER_ID,USER_NAME,USER_LASTNAME,USER_AGE,USER_GENDER,USER_ROLE,USER_EMAIL,USER_PASSWORD,USER_PROFILE
-        WHERE USER_ID =${USER_EMAIL}'`
+        const Qry = `=SELECT USER_ID,USER_NAME,USER_LASTNAME,USER_AGE,USER_GENDER,USER_ROLE,USER_EMAIL,USER_PASSWORD,USER_PROFILE
+        WHERE USER_ID = ${USER_EMAIL}`
         db.query(Qry, async (error, result)=>{
           if(error) throw error
           if(!result?.length){

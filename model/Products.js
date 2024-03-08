@@ -15,7 +15,7 @@ class Products{
         })
     }
     retrieveProduct(req, res){
-        const Qry = `SELECT SELECT * FROM brqcfllnm5g5ug2wsedr.PRODUCTS
+        const Qry = `SELECT * FROM brqcfllnm5g5ug2wsedr.PRODUCTS
         WHERE PRODUCT_ID =${req.params.id};
          `
          db.query(Qry,(error, result)=>{

@@ -35,7 +35,7 @@ Router.post('/addProduct',bodyParser.json(),(req, res)=>{
         })
     }
 })
-Router.patch('/patchProduct',bodyParser.json(),(req, res)=>{
+Router.patch('/patchProduct/:id',bodyParser.json(),(req, res)=>{
     try {
         products.patchProduct(req, res)
     } catch (error) {
