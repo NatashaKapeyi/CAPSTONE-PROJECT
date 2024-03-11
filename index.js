@@ -1,10 +1,12 @@
 import {userRouter, express} from "./controller/UserController.js"
 import {Router} from "./controller/ProductController.js"
+import { CartRouter } from "./controller/CartContoller.js"
 import cookieParser from "cookie-parser"
 import {errHandling} from "./middleware/error.js"
 import path from 'path'
 import cors from 'cors'
 import {config} from "dotenv"
+import { CartRouter } from "./controller/CartContoller.js"
 config()
 
 const app= express()
@@ -33,6 +35,7 @@ app.get('^/$|/capstone-project',(req, res)=>{
 })
 app.use('/users',userRouter)
 app.use('/products',Router)
+app.use('/cart',CartRouter)
 app.use(errHandling)
 app.listen(port, ()=>{         //listen
     console.log(`Server is running on port ${port}`);
