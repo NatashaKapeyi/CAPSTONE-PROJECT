@@ -47,7 +47,7 @@ class Users{
                 status: res.statusCode,
                 msg:`Try another email please`
             })
-            console.log(err);
+            console.log(error);
         }else {
             //create token
             let token =createToken(user)
