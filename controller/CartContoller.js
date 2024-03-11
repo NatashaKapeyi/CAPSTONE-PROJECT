@@ -1,12 +1,12 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import { cart } from '../model/index.js'
-
+import { verifyToken } from '../middleware/AuthenticateUser.js'
 
 const CartRouter = express.Router()
 
 //Fetch cart items
-CartRouter.get('/',(req, res)=>{
+CartRouter.get('/',verifyToken,(req, res)=>{
     try {
         cart.retrieveCart(req, res)
     } catch (error) {
