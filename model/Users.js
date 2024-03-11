@@ -33,10 +33,10 @@ class Users{
     async addUser(req, res){
         //Payload
         let data =req.body
-        data.userPwd = await hash(data?.userPwd,10)
+        data.USER_PASSWORD= await hash(data?.USER_PASSWORD,10)
         let user ={
-            emailAdd:data.emailAdd,
-            userPwd:data.usrPwd
+          USER_EMAIL:data.USER_EMAIL,
+            USER_PASSWORD:data.USER_PASSWORD
         }
         const Qry = `INSERT INTO USERS
         SET ?;
@@ -72,8 +72,8 @@ class Users{
       }
       async patchUser(req,res){
         let data = req.body;
-        if(data?.userPwd){
-          data.userPwd = await hash(data?.userPwd, 8);
+        if(data?.USER_PASSWORD){
+          data.USER_PASSWORD = await hash(data?.USER_PASSWORD, 12);
         }
         const Qry=`
         UPDATE USERS

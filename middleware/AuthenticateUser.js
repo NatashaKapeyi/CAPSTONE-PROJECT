@@ -11,19 +11,19 @@ const {sign,verify} = jwt
 //to pass an object we use createuser
 function createToken(user){
     return  sign({
-        emailAdd: user.emailAdd,
-        userPwd: user.userPwd
+        USER_EMAIL: user.USER_EMAIL,
+        USER_PASSWORD: user.USER_PASSWORD
 },
 process.env.SECRET_KEY,
 {
-    expiresIn: '1h'
+    expiresIn: '2h'
 }
 )
 }
-//verify token
-function verifyAToken (req, res, next){
+//verifying token
+function verifyToken (req, res, next){
     //Retrieve token from the browser
-    const token = request.headers['Authorization']
+    const token = req?.headers['Authorization']
     if(token) {
         if(verify(token, process.env.SECRET_KEY)){
             next()
@@ -42,5 +42,5 @@ function verifyAToken (req, res, next){
 }
 export{
     createToken,
-    verifyAToken
+    verifyToken
 }
