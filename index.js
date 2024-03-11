@@ -6,7 +6,6 @@ import {errHandling} from "./middleware/error.js"
 import path from 'path'
 import cors from 'cors'
 import {config} from "dotenv"
-import { CartRouter } from "./controller/CartContoller.js"
 config()
 
 const app= express()
