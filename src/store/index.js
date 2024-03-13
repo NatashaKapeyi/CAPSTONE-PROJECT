@@ -2,9 +2,10 @@ import { createStore } from 'vuex'
 import router from '@/router'
 import sweet from 'sweetalert'
 import { useCookies } from 'vue3-cookies'
+import axios from 'axios'
 const {cookies} = useCookies()
 import AuthenticateUser from '@/service/AuthenticateUser'
-const capstoneURL = 'https://capstone-project-tcp1.onrender.com'
+const capstoneURL = 'https://capstone-project-tcp1.onrender.com/'
 
 
 export default createStore({
@@ -295,6 +296,23 @@ export default createStore({
         icon: "error",
         timer: 2000
       }) 
+    }
+  },
+  async retrieveCart(context){
+    try {
+      let {results} = (await axios.get(`${capstoneURL}cart`)).data
+      console.log(results);
+      if(results){
+        context.commit('setCart', results)
+      }
+    } catch (error) {
+      // 'An error occurred when retrieving cart.'
+      sweet({
+        title: 'Error',
+        text: error.message,
+        icon: "error",
+        timer: 3000
+      })
     }
   },
   async deleteCart(context, payload) {

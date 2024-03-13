@@ -8,8 +8,9 @@
     box-sizing: border-box;
 }
 
-html{
+html,#app{
     background-color: #FCFBF4;
+    font-family:"Kanit", sans-serif ;
 }
 
 
