@@ -5,9 +5,22 @@
 </template>
 
 <script>
-    export default {
-        
+  export default {
+    name: 'LoginView',
+    components: {
+
+    },
+
+    computed: {
+    
+    },
+    mounted() {    },
+    methods:{
+        login() {
+            return this.$store.state.login
+        }
     }
+}
 </script>
 
 <style scoped>
