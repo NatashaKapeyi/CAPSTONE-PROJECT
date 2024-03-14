@@ -23,7 +23,7 @@ process.env.SECRET_KEY,
 //verifying token
 function verifyToken (req, res, next){
     //Retrieve token from the browser
-    const token = req?.headers['Authorization']
+    const token = req?.headers['authorization']
     if(token) {
         if(verify(token, process.env.SECRET_KEY)){
             next()
