@@ -110,7 +110,7 @@ class Users{
                 status : res.statusCode,
                 msg : 'You are logged in',
                 token,
-                result
+                result: result[0]
               })
             }else{
               res.json({
