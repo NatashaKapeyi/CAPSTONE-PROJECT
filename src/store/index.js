@@ -146,6 +146,7 @@ export default createStore({
         cookies.set('LegitUser', {
           msg, token, result
         })
+        console.log('Store - Login: ', token);
         AuthenticateUser.applyToken(token)
         sweet({
           title: msg,
