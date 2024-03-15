@@ -119,7 +119,7 @@ export default createStore({
     },
     async deleteUser(context, payload) {
       try{
-        let {msg} = await axios.delete(`${capstoneURL}users/${payload.id}`)
+        let {msg} = await axios.delete(`${capstoneURL}users/deleteUser/${payload.id}`)
         if(msg) {
           context.dispatch('retrieveUsers')
           sweet({

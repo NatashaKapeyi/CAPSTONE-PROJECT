@@ -48,8 +48,8 @@
     addUser(){
       this.$store.dispatch('addUser',this.$data)
     },
-    deleteUser(USER_ID) {
-      this.$store.dispatch('deleteUser',USER_ID)
+    deleteUser() {
+      this.$store.dispatch('deleteUser',this.payload)
     },
     patchUser(USER_ID){
       let edit = {
@@ -57,7 +57,7 @@
       USER_NAME: this.USER_NAME,
       USER_LASTNAME: this.USER_LASTNAME,
       USER_AGE: this.USER_AGE,
-      USER_AGE: this.USER_AGE,
+      USER_GENDER: this.USER_GENDER,
       USER_ROLE: this.USER_ROLE,
       USER_EMAIL:this.USER_EMAIL,
       USER_PASSWORD:this.USER_PASSWORD,
