@@ -40,10 +40,10 @@ export default createStore({
     async addUser(context, payload) {
       try {
      let {msg} =   (await axios.post(`${capstoneURL}users/registerUser/${payload.id}`)).data 
-     if(msg) {
+     if({msg}) {
       context.dispatch('retrieveUsers')
       sweet({
-        title:'Registration',
+        title:'User registered',
         text:msg,
         icon:"success",
         timer:3000
@@ -62,7 +62,7 @@ export default createStore({
     async retrieveUsers(context){
       try {
         let {results} =(await axios.get(`${capstoneURL}users`)).data
-        if(results){
+        if({results}){
           context.commit('setUsers', results)
         }
       } catch (error) {
@@ -77,7 +77,7 @@ export default createStore({
     async retrieveUser(context, payload) {
       try{
         let {result} = (await axios.get(`${capstoneURL}users/${payload.id}`)).data
-        if(result) {
+        if({result}) {
           context.commit('setUser', result)
         }else {
           sweet({
@@ -99,13 +99,13 @@ export default createStore({
     async patchUser(context, payload) {
       try{
         let {msg} = await axios.patch(`${capstoneURL}users/patchUser/${payload.USER_ID}`,payload)
-        if(msg) {
+        if({msg}) {
           context.dispatch('retrieveUsers')
           sweet({
-            title: 'Update user',
+            title: 'Updated user',
             text: msg,
             icon: "success",
-            timer: 2000
+            timer: 3000
           }) 
         }
       }catch(e) {
@@ -113,14 +113,14 @@ export default createStore({
           title: 'Error',
           text: 'An error occurred when updating a user.',
           icon: "error",
-          timer: 2000
+          timer: 3000
         }) 
       }
     },
     async deleteUser(context, payload) {
       try{
-        let {msg} = await axios.delete(`${capstoneURL}users/deleteUser/${payload.id}`)
-        if(msg) {
+        let {msg} = await axios.delete(`${capstoneURL}users/deleteUser/${payload.USER_ID}`)
+        if({msg}) {
           context.dispatch('retrieveUsers')
           sweet({
             title: 'Delete user',

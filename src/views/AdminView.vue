@@ -199,7 +199,7 @@ export default {
       this.$store.dispatch('addUser',this.$data)
     },
     deleteUser(USER_ID) {
-      this.$store.dispatch('deleteUser',{ id: USER_ID})
+      this.$store.dispatch('deleteUser',{ USER_ID: USER_ID})
     },
     patchUser(USER_ID){
     let patch = {
