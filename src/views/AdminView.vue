@@ -201,8 +201,8 @@ export default {
     deleteUser(USER_ID) {
       this.$store.dispatch('deleteUser',{ id: USER_ID})
     },
-   async patchUser(USER_ID){
-    let payload = {
+    patchUser(USER_ID){
+    let patch = {
       USER_ID:this.payload.id,
       USER_NAME: this.USER_NAME,
       USER_LASTNAME: this.USER_LASTNAME,
@@ -212,10 +212,10 @@ export default {
       USER_EMAIL:this.USER_EMAIL,
       USER_PASSWORD:this.USER_PASSWORD,
       USER_PROFILE: this.USER_PROFILE
-      }; 
-      // this.$store.dispatch('patchUser',{ id:USER_ID})
-      const response = await axios.patch(`${capstoneURL}users/patchUser/${USER_ID}`, payload);
+      }  
+      this.$store.dispatch('patchUser',{ id:USER_ID})
       
+
     }
     },
   
