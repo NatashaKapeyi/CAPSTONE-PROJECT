@@ -99,18 +99,18 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <input type="text" placeholder="USER_NAME" class="form-control my-2" v-model="payload.USER_NAME" required>
+          <input type="text" placeholder="USER_NAME" class="form-control my-2"  v-model="payload.USER_NAME" required>
     <input type="text"  placeholder="USER_LASTNAME" class="form-control my-2" v-model="payload.USER_LASTNAME" required>
     <input type="number" placeholder="USER_AGE" class="form-control my-2" v-model="payload.USER_AGE" required>
     <input type="text" placeholder="USER_GENDER" class="form-control my-2" v-model="payload.USER_GENDER" required>
     <input type="text" placeholder="USER_ROLE" class="form-control my-2" v-model="payload.USER_ROLE" required>
-    <input type="text" placeholder="USER_EMAIL" class="form-control my-2" v-model="payload.USER_EMAIL" required>
-    <input type="text" placeholder="USER_PASSWORD" class="form-control my-2" v-model="payloadUSER_PASSWORD" required>
+    <input type="t" placeholder="USER_EMAIL" class="form-control my-2" v-model="payload.USER_EMAIL" required>
+    <input type="password" placeholder="USER_PASSWORD" class="form-control my-2" v-model="payload.USER_PASSWORD" required>
     <input type="text" placeholder="USER_PROFILE" class="form-control my-2" v-model="payload.USER_PROFILE" required>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-          <a @click="addUser" class="btn btn-primary">Add Button</a>
+          <a @click="addUser()" class="btn btn-primary">Add Button</a>
         </div>
       </div>
     </div>

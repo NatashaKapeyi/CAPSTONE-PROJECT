@@ -39,14 +39,14 @@ export default createStore({
   actions: {
     async addUser(context, payload) {
       try {
-     let {msg} =   (await axios.post(`${capstoneURL}users/registerUser`,payload)).data 
+     let {msg} = (await axios.post(`${capstoneURL}users/registerUser`,payload)).data 
      if({msg}) {
       context.dispatch('retrieveUsers')
       sweet({
-        title:'User registered',
-        text:msg,
-        icon:"success",
-        timer:3000
+        title: 'Register',
+        text: 'User registered',
+        icon: "info",
+        timer: 3000
       })
       router.push({name:'login'})
      }
@@ -55,7 +55,7 @@ export default createStore({
           title: 'Error',
           text: 'Please try again later',
           icon: "error",
-          timer: 2000
+          timer: 3000
         }) 
       }
     },
@@ -123,7 +123,7 @@ export default createStore({
         if({msg}) {
           context.dispatch('retrieveUsers')
           sweet({
-            title: 'Delete user',
+            title: 'User removed',
             text: msg,
             icon: "success",
             timer: 2000
