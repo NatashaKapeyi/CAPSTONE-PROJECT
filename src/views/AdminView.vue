@@ -203,7 +203,7 @@ export default {
     },
     patchUser(USER_ID){
     let patch = {
-      USER_ID:this.payload.id,
+      USER_ID:USER_ID,
       USER_NAME: this.USER_NAME,
       USER_LASTNAME: this.USER_LASTNAME,
       USER_AGE: this.USER_AGE,
@@ -213,7 +213,7 @@ export default {
       USER_PASSWORD:this.USER_PASSWORD,
       USER_PROFILE: this.USER_PROFILE
       }  
-      this.$store.dispatch('patchUser',{ id:USER_ID})
+      this.$store.dispatch('patchUser',patch)
       
 
     }

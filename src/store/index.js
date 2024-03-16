@@ -98,7 +98,7 @@ export default createStore({
     },
     async patchUser(context, payload) {
       try{
-        let {msg} = await axios.patch(`${capstoneURL}users/patchUser/${payload.id}`,payload)
+        let {msg} = await axios.patch(`${capstoneURL}users/patchUser/${payload.USER_ID}`,payload)
         if(msg) {
           context.dispatch('retrieveUsers')
           sweet({
