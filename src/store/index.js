@@ -39,7 +39,7 @@ export default createStore({
   actions: {
     async addUser(context, payload) {
       try {
-     let {msg} =   (await axios.post(`${capstoneURL}users/registerUser/${payload.id}`)).data 
+     let {msg} =   (await axios.post(`${capstoneURL}users/registerUser`,payload)).data 
      if({msg}) {
       context.dispatch('retrieveUsers')
       sweet({
@@ -76,7 +76,7 @@ export default createStore({
     },
     async retrieveUser(context, payload) {
       try{
-        let {result} = (await axios.get(`${capstoneURL}users/${payload.id}`)).data
+        let {result} = (await axios.get(`${capstoneURL}users/${payload.USER_ID}`)).data
         if({result}) {
           context.commit('setUser', result)
         }else {
@@ -191,7 +191,7 @@ export default createStore({
   },
   async retrieveProduct(context, payload) {
     try{
-      let {result} = (await axios.get(`${capstoneURL}products/${payload.id}`)).data
+      let {result} = (await axios.get(`${capstoneURL}products/${payload.USER_ID}`)).data
       if(result) {
         context.commit('setProduct', result)
       }else {
@@ -213,7 +213,7 @@ export default createStore({
   },
   async patchProduct(context, payload) {
     try{
-      let {msg} = await axios.patch(`${capstoneURL}products/patchProduct/${payload.id}`)
+      let {msg} = await axios.patch(`${capstoneURL}products/patchProduct/${payload.USER_ID}`)
       if(msg) {
         context.dispatch('retrieveProducts')
         sweet({
@@ -234,7 +234,7 @@ export default createStore({
   },
   async deleteProduct(context, payload) {
     try{
-      let {msg} = await axios.delete(`${capstoneURL}products/deleteProduct/${payload.id}`)
+      let {msg} = await axios.delete(`${capstoneURL}products/deleteProduct/${payload.USER_ID}`)
       if(msg) {
         context.dispatch('retrieveProducts')
         sweet({
@@ -255,7 +255,7 @@ export default createStore({
   },
   async addProduct(context, payload) {
     try{
-      let {msg} = (await axios.post(`${lifeURL}products/addProduct/${payload.id}`)).data
+      let {msg} = (await axios.post(`${lifeURL}products/addProduct/${payload.USER_ID}`)).data
       if(msg) {
         context.dispatch('retrieveProducts')
         sweet({
@@ -278,7 +278,7 @@ export default createStore({
   },
   async patchCart(context, payload) {
     try{
-      let {msg} = (await axios.post(`${lifeURL}cart/patchCart/${payload.id}`)).data
+      let {msg} = (await axios.post(`${lifeURL}cart/patchCart/${payload.USER_ID}`)).data
       if(msg) {
         context.dispatch('retrieveCart')
         sweet({
@@ -318,7 +318,7 @@ export default createStore({
   },
   async deleteCart(context, payload) {
     try{
-      let {msg} = await axios.delete(`${capstoneURL}cart/deleteCart/${payload.id}`)
+      let {msg} = await axios.delete(`${capstoneURL}cart/deleteCart/${payload.USER_ID}`)
       if(msg) {
         context.dispatch('retrieveCart')
         sweet({
