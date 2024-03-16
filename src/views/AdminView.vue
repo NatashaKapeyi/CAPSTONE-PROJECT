@@ -124,7 +124,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <input type="text" placeholder="USER_NAME" class="form-control my-2" v-model="USER_NAME" required>
+    <input type="text" placeholder="USER_NAME" class="form-control my-2" v-model="USER_NAME" required>
     <input type="text"  placeholder="USER_LASTNAME" class="form-control my-2" v-model="USER_LASTNAME" required>
     <input type="number" placeholder="USER_AGE" class="form-control my-2" v-model="USER_AGE" required>
     <input type="text" placeholder="USER_GENDER" class="form-control my-2" v-model="USER_GENDER" required>
@@ -178,10 +178,11 @@
 </template>
 
 <script>
-  export default {
+export default {
     data(){
-      return{
-     USER_ID:'',
+      return{ 
+        payload:{
+      USER_ID:'',
       USER_NAME:'',
       USER_LASTNAME:'',
       USER_AGE:'',
@@ -191,6 +192,7 @@
       USER_PASSWORD:'',
       USER_PROFILE:''
       }
+    }
     },
     methods: {
     addUser(){
@@ -199,9 +201,9 @@
     deleteUser(USER_ID) {
       this.$store.dispatch('deleteUser',{ id: USER_ID})
     },
-    patchUser(USER_ID){
-      let patch = {
-      USER_ID:USER_ID,
+   async patchUser(USER_ID){
+    let payload = {
+      USER_ID:this.payload.id,
       USER_NAME: this.USER_NAME,
       USER_LASTNAME: this.USER_LASTNAME,
       USER_AGE: this.USER_AGE,
@@ -210,9 +212,10 @@
       USER_EMAIL:this.USER_EMAIL,
       USER_PASSWORD:this.USER_PASSWORD,
       USER_PROFILE: this.USER_PROFILE
-      }
-      this.$store.dispatch('patchUser',patch)
-
+      }; 
+      // this.$store.dispatch('patchUser',{ id:USER_ID})
+      const response = await axios.patch(`${capstoneURL}users/patchUser/${USER_ID}`, payload);
+      
     }
     },
   
