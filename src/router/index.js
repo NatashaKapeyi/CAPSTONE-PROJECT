@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: HomeView
   },
@@ -33,7 +33,7 @@ const routes = [
   {
     path:'/product/:id',
     name:'product',
-    component:()=> import('@/views/ProductView.vue')
+    component:()=> import('../views/ProductView.vue')
   },
   {
     path:'/cart',
@@ -41,9 +41,14 @@ const routes = [
     component:()=> import('@/views/CartView.vue')
   },
   {
-    path:'/login',
+    path:'/',
     name:'loginview',
     component:()=> import('@/views/LoginView.vue')
+  },
+  {
+    path:'/',
+    name:'registerview',
+    component:()=> import('@/views/RegisterView.vue')
   }
 
 ]

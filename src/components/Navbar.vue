@@ -12,35 +12,36 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-     <router-link class="navbar-brand me-auto" to="/"><img src="https://i.ibb.co/4FYfXtW/Frame-1-2.png" alt="logo" loading="lazy" class="img-fluid"></router-link>
+     <router-link class="navbar-brand me-auto" to="/home"><img src="https://i.ibb.co/4FYfXtW/Frame-1-2.png" alt="logo" loading="lazy" class="img-fluid"></router-link>
       <ul class="navbar-nav mb-lg-0 mx-auto fw-bolder p-2">
         <li class="nav-item">
-          <router-link class="nav-link active" aria-current="page" to="/">Home</router-link>
+          <router-link class="nav-link active" aria-current="page" to="/home">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link " to="/about">About</router-link>
+          <router-link class="nav-link active" to="/about">About</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/products">
+          <router-link class="nav-link active" to="/products">
             Products
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/admin"> Admin</router-link>
+          <router-link class="nav-link active" to="/admin"> Admin</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/cart"> Checkout</router-link>
+          <router-link class="nav-link active" to="/cart"> Checkout</router-link>
         </li>
         <li>
-        <router-link class="nav-link" to="/contact">Contact</router-link>
+        <router-link class="nav-link active" to="/contact">Contact</router-link>
         </li>
         <li>
-        <router-link class="nav-link" to="/login">Login</router-link>
+        <router-link class="nav-link active" to="/">Login</router-link>
         </li>
       </ul>
       <form class="d-flex " role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
+        
       </form>
     </div>
   </div>
@@ -68,11 +69,11 @@
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Serif&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant&family=Kaisei+Opti&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Serif&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital@0;1&display=swap');
 #ship{
     background-color: #58641D;
     padding:3px;
-    font-family:  "Kanit", sans-serif;
+    font-family: "Kaisei Opti", serif;
 }
 .bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
     vertical-align: -.29em;
@@ -85,7 +86,7 @@
 
 nav div{
    justify-content: space-between; 
-   font-family:"Kanit", sans-serif ;
+   font-family: "Kaisei Opti", serif;
    background-color: #FFFFFF;
 }
 .navbar{
