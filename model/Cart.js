@@ -5,7 +5,18 @@ import {hash, compare} from 'bcrypt'
 class Cart{
     retrieveCart(req, res){
         const Qry = `
-        SELECT * FROM brqcfllnm5g5ug2wsedr.CART;
+        SELECT 
+    USERS.USER_ID,
+    USERS.USER_NAME,
+    PRODUCTS.PRODUCT_ID,
+    PRODUCTS.PRODUCT_NAME,
+    PRODUCTS.PRODUCT_PRICE
+    FROM 
+    USERS
+  INNER JOIN 
+   CART ON USERS.USER_ID = CART.USER_ID
+   INNER JOIN 
+   PRODUCTS ON CART.PRODUCT_ID =PRODUCTS.PRODUCT_ID;
         
         `
         db.query(Qry,(error, results)=>{
@@ -59,7 +70,7 @@ class Cart{
     //     })
     // }
     deleteCart(req,res){
-        const Qry=`DELETE FROM CART WHERE CART_ID=${req.params.id} ;`
+        const Qry=`DELETE FROM CART WHERE USER_ID=${req.params.id} ;`
         // const user = req.body
         db.query(Qry, (error)=>{
           if(error) throw error
