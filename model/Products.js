@@ -3,7 +3,7 @@ import {connection as db} from "../config/index.js"
 
 class Products{
     retrieveProducts(req, res){
-        const Qry = `SELECT PRODUCT_ID,PRODUCT_NAME,PRODUCT_CATEGORY,PRODUCT_PRICE,PRODUCT_QUANTITY,PRODUCT_WEIGHT,CART_ID,PRODUCT_IMAGE
+        const Qry = `SELECT PRODUCT_ID,PRODUCT_NAME,PRODUCT_CATEGORY,PRODUCT_PRICE,PRODUCT_QUANTITY,PRODUCT_WEIGHT,PRODUCT_IMAGE
         FROM PRODUCTS;
          `
          db.query(Qry,(error, results)=>{
