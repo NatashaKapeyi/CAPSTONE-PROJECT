@@ -6,17 +6,24 @@ class Cart{
     retrieveCart(req, res){
         const Qry = `
         SELECT 
-    USERS.USER_ID,
-    USERS.USER_NAME,
-    PRODUCTS.PRODUCT_ID,
-    PRODUCTS.PRODUCT_NAME,
-    PRODUCTS.PRODUCT_PRICE
+        p.PRODUCT_ID,
+        p.PRODUCT_NAME,
+        p.PRODUCT_CATEGORY,
+        p.PRODUCT_PRICE,
+        p.PRODUCT_QUANTITY AS PRODUCT_AVAILABLE_QUANTITY,
+    c.CART_QUANTITY AS QUANTITY_IN_CART,
+        u.USER_ID,
+        u.USER_NAME,
+        u.USER_EMAIL
     FROM 
-    USERS
-  INNER JOIN 
-   CART ON USERS.USER_ID = CART.USER_ID
-   INNER JOIN 
-   PRODUCTS ON CART.PRODUCT_ID =PRODUCTS.PRODUCT_ID;
+        CART c
+    INNER JOIN 
+        PRODUCTS p ON c.PRODUCT_ID = p.PRODUCT_ID
+    INNER JOIN 
+        USERS u ON c.USER_ID = u.USER_ID
+    WHERE 
+        u.USER_ID = ${req.params.id}
+    ;
         
         `
         db.query(Qry,(error, results)=>{
