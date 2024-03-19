@@ -21,23 +21,51 @@ process.env.SECRET_KEY,
 )
 }
 //verifying token
-function verifyToken (req, res, next){
-    //Retrieve token from the browser
-    const token = req?.headers['authorization']
-    if(token) {
-        if(verify(token, process.env.SECRET_KEY)){
-            next()
-        }else {
+// function verifyToken (req, res, next){
+//     //Retrieve token from the browser
+//     const token = req?.headers['authorization']
+//     if(token) {
+//         if(verify(token, process.env.SECRET_KEY)){
+//             next()
+//         }else {
+//             res?.json({
+//                 status: res.statusCode,
+//                 msg: "Please provide the correct credentials"
+//             })
+//         }
+//     }else {
+//         res?.json({
+//             status: res.statusCode,
+//             msg:"Please login"
+//         })
+//     }
+// }
+// export{
+//     createToken,
+//     verifyToken
+// }
+function verifyToken(req, res, next) {
+    // Retrieve token from local storage
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        // If token exists, verify it using the SECRET_KEY
+        if (verify(token, process.env.SECRET_KEY)) {
+            // If token is valid, proceed to the next middleware function
+            next();
+        } else {
+            // If token is invalid, send an error response
             res?.json({
                 status: res.statusCode,
                 msg: "Please provide the correct credentials"
-            })
+            });
         }
-    }else {
+    } else {
+        // If no token is found in local storage, send an error response
         res?.json({
             status: res.statusCode,
-            msg:"Please login"
-        })
+            msg: "Please login"
+        });
     }
 }
 export{
