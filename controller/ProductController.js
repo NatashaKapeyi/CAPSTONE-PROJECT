@@ -6,7 +6,7 @@ import { verifyToken } from '../middleware/AuthenticateUser.js'
 const Router = express.Router()
 
 //Fetching products,product
-Router.get('/',(req, res)=>{
+Router.get('/',verifyToken,(req, res)=>{
     try {
         products.retrieveProducts(req, res)
     } catch (error) {
@@ -16,7 +16,7 @@ Router.get('/',(req, res)=>{
         })
     }
 })
-Router.get('/:id',(req, res)=>{
+Router.get('/:id',verifyToken,(req, res)=>{
     try {
         products.retrieveProduct(req, res)
     } catch (error) {
