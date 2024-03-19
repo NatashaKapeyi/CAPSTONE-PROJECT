@@ -33,12 +33,11 @@ class Products{
         const Qry =`INSERT INTO PRODUCTS
         SET ?;
         `
-        db.query(Qry,[data],(error,results )=>{
+        db.query(Qry,[data],(error)=>{
             if(error)throw error
             res.json({
                 status: res.statusCode,
                 msg: 'Successfully added a product',
-                results:[0]
             })
         })
     }
