@@ -28,21 +28,25 @@ class Products{
     }
     //CRUD SYSTEM
     addProduct(req,res){
+        let data =req.body;
+
         const Qry =`INSERT INTO PRODUCTS
         SET ?;
         `
-        db.query(Qry,[req.body],(error, )=>{
+        db.query(Qry,[data],(error,results )=>{
             if(error)throw error
             res.json({
                 status: res.statusCode,
-                msg: 'Successfully added a product'
+                msg: 'Successfully added a product',
+                results:[0]
             })
         })
     }
     patchProduct(req,res){
+        let data = req.body;
         const Qry =`UPDATE PRODUCTS SET? WHERE PRODUCT_ID =${req.params.id};
         `
-        db.query(Qry,[req.body],(error, )=>{
+        db.query(Qry,[data],(error)=>{
             if(error)throw error
             res.json({
                 status: res.statusCode,
