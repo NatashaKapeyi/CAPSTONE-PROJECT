@@ -21,51 +21,26 @@ process.env.SECRET_KEY,
 )
 }
 //verifying token
-// function verifyToken (req, res, next){
-//     //Retrieve token from the browser
-//     const token = req?.headers['authorization']
-//     if(token) {
-//         if(verify(token, process.env.SECRET_KEY)){
-//             next()
-//         }else {
-//             res?.json({
-//                 status: res.statusCode,
-//                 msg: "Please provide the correct credentials"
-//             })
-//         }
-//     }else {
-//         res?.json({
-//             status: res.statusCode,
-//             msg:"Please login"
-//         })
-//     }
-// }
-// export{
-//     createToken,
-//     verifyToken
-// }
-
-function verifyToken(req, res, next) {
-    // Retrieve token from the Authorization header or cookies
-    const token = req.headers['authorization'] || req.cookies.token;
-    if (token) {
-        if (verify(token, process.env.SECRET_KEY)) {
-            next();
-        } else {
-            res.json({
+function verifyToken (req, res, next){
+    //Retrieve token from the browser
+    const token = req?.headers['authorization']
+    if(token) {
+        if(verify(token, process.env.SECRET_KEY)){
+            next()
+        }else {
+            res?.json({
                 status: res.statusCode,
                 msg: "Please provide the correct credentials"
-            });
+            })
         }
-    } else {
-        res.json({
+    }else {
+        res?.json({
             status: res.statusCode,
-            msg: "Please login"
-        });
+            msg:"Please login"
+        })
     }
 }
-
-export {
+export{
     createToken,
     verifyToken
 }
