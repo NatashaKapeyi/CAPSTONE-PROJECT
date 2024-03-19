@@ -333,7 +333,27 @@ export default createStore({
       }) 
     }
   },
-
+  async addCart(context, payload) {
+    try{
+      let {msg} = (await axios.post(`${capstoneURL}products/addCart`,payload))
+      if({msg}) {
+        context.dispatch('retrieveCart')
+        sweet({
+          title: 'successfully added to cart',
+          text: msg,
+          icon: "success",
+          timer: 2000
+        }) 
+      }
+    }catch(error) {
+      sweet({
+        title: 'Error',
+        text: error.message,
+        icon: "error",
+        timer: 2000
+      }) 
+    }
+  }
   },
   modules: {
   }

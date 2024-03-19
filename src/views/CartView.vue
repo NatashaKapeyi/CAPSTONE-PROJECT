@@ -5,6 +5,11 @@
             {{ item.USER_ID }}
             <p class="d-block pt-2 ">{{ item.PRODUCT_ID }}</p>
             <p>{{ item.PRODUCT_PRICE }}</p>
+            <p>{{ item.PRODUCT_NAME }}</p>
+            <p>{{ item.USER_EMAIL }}</p>
+            <p>{{ item.USER_NAME }}</p>
+            <p>{{ item.QUANTITY_IN_CART }}</p>
+            <p>{{ item.PRODUCT_AVAILABLE_QUANTITY}}</p>
         </h1>
 
     </div>

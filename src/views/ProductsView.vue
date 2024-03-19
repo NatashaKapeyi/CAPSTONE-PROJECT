@@ -21,7 +21,7 @@
                         Amount: R{{ product.PRODUCT_PRICE }}
                     </p>
                     <router-link :to="{name: 'product', params: {id: product.PRODUCT_ID}}">View More</router-link>
-                    <p> <a @click="addCart()">Add to cart</a></p>
+                    <p> <a @click="addCart(product)">Add to cart</a></p>
                 </template>
             </Card>
         </div>
@@ -45,6 +45,12 @@ export default {
     },
     mounted() {
         this.$store.dispatch('retrieveProducts')
+    },
+    methods:{
+      addCart(product){
+        this.$store.dispatch('addCart', product);
+        console.log(product);
+      }  
     }
 }
 </script>
