@@ -27,6 +27,16 @@ CartRouter.patch('/patchCart/:id',bodyParser.json(),(req, res)=>{
         })
     }
 })
+CartRouter.post('/addCart',bodyParser.json(),(req, res)=>{
+    try {
+        cart.addCart(req, res)
+    } catch (error) {
+        res.json({
+            status: res.statusCode,
+            msg:'Failed to add a product item '
+        })
+    }
+})
 CartRouter.delete('/deleteCart/:id',bodyParser.json(),(req, res)=>{
     try {
         cart.deleteCart(req, res)
