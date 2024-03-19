@@ -41,7 +41,7 @@ class Users{
         const Qry = `INSERT INTO USERS
         SET ?;
         `
-        db.query(Qry, [data],(error)=>{
+        db.query(Qry, [req.body],(error)=>{
             if(error){
             res.json({
                 status: res.statusCode,
