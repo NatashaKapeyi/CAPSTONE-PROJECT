@@ -31,17 +31,18 @@ class Users{
         })
     }
     async addUser(req, res){
-        // //Payload
-        // let data =req.body
-        // data.USER_PASSWORD= await hash(data?.USER_PASSWORD,10)
-        // let user ={
-        //   USER_EMAIL:data.USER_EMAIL,
-        //     USER_PASSWORD:data.USER_PASSWORD
-        // }
+        //Payload
+        let data = req.body;
+        if(data?.USER_PASSWORD){
+          data.USER_PASSWORD = await hash(data?.USER_PASSWORD, 12)
+        let user ={
+          USER_EMAIL:data.USER_EMAIL,
+            USER_PASSWORD:data.USER_PASSWORD
+        }
         const Qry = `INSERT INTO USERS
         SET ?;
         `
-        db.query(Qry, [req.body],(error)=>{
+        db.query(Qry, [data],(error)=>{
             if(error){
             res.json({
                 status: res.statusCode,
