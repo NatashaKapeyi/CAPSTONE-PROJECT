@@ -140,13 +140,13 @@ export default createStore({
     },
     async login(context, payload) {
       try{
-       const {msg, token, result} = (await axios.post(`${capstoneURL}users/login`, payload)).data 
+       let {msg, token, result} = (
+        await axios.post(`${capstoneURL}users/login`, payload)).data 
        if(result){
         context.commit('setUser', {msg, result})
         cookies.set('LegitUser', {
-          msg, token, result
+          token,msg , result
         })
-        console.log('Store - Login: ', token);
         AuthenticateUser.applyToken(token)
         sweet({
           title: msg,
