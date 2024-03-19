@@ -21,7 +21,7 @@
                         Amount: R{{ product.PRODUCT_PRICE }}
                     </p>
                     <router-link :to="{name: 'product', params: {id: product.PRODUCT_ID}}">View More</router-link>
-                    <p>Add to cart</p>
+                    <p> <a @click="addCart()">Add to cart</a></p>
                 </template>
             </Card>
         </div>

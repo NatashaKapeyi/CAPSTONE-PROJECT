@@ -23,11 +23,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <input type="text" placeholder="prod_Name" class="form-control my-2" v-model="prod_Name" required>
-          <input type="number" placeholder="quantity" class="form-control my-2" v-model="quantity" required>
-          <input type="number"  placeholder="amount" class="form-control my-2" v-model="amount" required>
-          <input type="text" placeholder="category" class="form-control my-2" v-model="category" required>
-          <input type="text" placeholder="prod_URL" class="form-control my-2" v-model="prod_URL" required>
+          <input type="text" placeholder="PRODUCT_NAME" class="form-control my-2" v-model="p_payload.PRODUCT_NAME" required>
+          <input type="number" placeholder="PRODUCT_QUANTITY" class="form-control my-2" v-model="p_payload.PRODUCT_QUANTITY" required>
+          <input type="number"  placeholder="PRODUCT_PRICE" class="form-control my-2" v-model="p_payload.PRODUCT_PRICE" required>
+          <input type="text" placeholder="PRODUCT_CATEGORY" class="form-control my-2" v-model="p_payload.PRODUCT_CATEGORY" required>
+          <input type="text" placeholder="PRODUCT_IMAGE" class="form-control my-2" v-model="p_payload.PRODUCT_IMAGE" required>
+          <input type="number" placeholder="PRODUCT_WEIGHT" class="form-control my-2" v-model="p_payload.PRODUCT_WEIGHT" required>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -46,11 +47,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <input type="text" placeholder="prod_Name" class="form-control my-2" v-model="prod_Name" required>
-          <input type="number" placeholder="quantity" class="form-control my-2" v-model="quantity" required>
-          <input type="number"  placeholder="amount" class="form-control my-2" v-model="amount" required>
-          <input type="text" placeholder="category" class="form-control my-2" v-model="category" required>
-          <input type="text" placeholder="prod_URL" class="form-control my-2" v-model="prod_URL" required>
+          <input type="text" placeholder="PRODUCT_NAME" class="form-control my-2" v-model="PRODUCT_NAME" required>
+          <input type="number" placeholder="PRODUCT_QUANTITY" class="form-control my-2" v-model="PRODUCT_QUANTITY" required>
+          <input type="number"  placeholder="PRODUCT_PRICE" class="form-control my-2" v-model="PRODUCT_PRICE" required>
+          <input type="text" placeholder="PRODUCT_CATEGORY" class="form-control my-2" v-model="PRODUCT_CATEGORY" required>
+          <input type="text" placeholder="PRODUCT_IMAGE" class="form-control my-2" v-model="PRODUCT_IMAGE" required>
+          <input type="number" placeholder="PRODUCT_WEIGHT" class="form-control my-2" v-model="PRODUCT_WEIGHT" required>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -78,8 +80,8 @@
           <td>{{item.PRODUCT_IMAGE}}</td>
         
           <td><a data-bs-toggle="modal" data-bs-target="#editProduct" id="edit" class="btn btn-outline-success">Edit form</a>
-          <a @click="editProd(item.PRODUCT_ID)" id="edit" class="btn btn-outline-success">Edit</a>
-          <a @click="deleteProd(item.PRODUCT_ID)" id="delete" class="btn btn-outline-danger">Delete</a></td>
+          <a @click="patchProduct(item.PRODUCT_ID)" id="edit" class="btn btn-outline-success">Edit</a>
+          <a @click="deleteProduct(item.PRODUCT_ID)" id="delete" class="btn btn-outline-danger">Delete</a></td>
           
         </tbody>
       </table>
@@ -189,16 +191,30 @@ export default {
       USER_ROLE:'',
       USER_EMAIL:'',
       USER_PASSWORD:'',
-      USER_PROFILE:''
-      }
+      USER_PROFILE:'',
+        },
+      p_payload:{
+      PRODUCT_NAME:'',
+      PRODUCT_CATEGORY:'',
+      PRODUCT_PRICE:'',
+      PRODUCT_QUANTITY:'',
+      PRODUCT_WEIGHT:'',
+      PRODUCT_IMAGE:'',
+      },
     }
     },
     methods: {
     addUser(){
       this.$store.dispatch('addUser',this.payload)
     },
+    addProduct(){
+      this.$store.dispatch('addProduct',this.p_payload)
+    },
     deleteUser(USER_ID) {
       this.$store.dispatch('deleteUser',{ USER_ID: USER_ID})
+    },
+    deleteProduct(PRODUCT_ID) {
+      this.$store.dispatch('deleteProduct',{ PRODUCT_ID: PRODUCT_ID})
     },
     patchUser(USER_ID){
     let patch = {
@@ -211,11 +227,21 @@ export default {
       USER_EMAIL:this.USER_EMAIL,
       USER_PASSWORD:this.USER_PASSWORD,
       USER_PROFILE: this.USER_PROFILE
-      }  
+      };
       this.$store.dispatch('patchUser',patch)
-      
-
-    }
+    },
+    patchProduct(PRODUCT_ID) {
+            let edit = {
+                PRODUCT_ID: PRODUCT_ID,
+                PRODUCT_NAME: this.PRODUCT_NAME,
+                PRODUCT_CATEGORY: this.PRODUCT_CATEGORY,
+                PRODUCT_PRICE: this.PRODUCT_PRICE,
+                PRODUCT_QUANTITY: this.PRODUCT_QUANTITY,
+                PRODUCT_WEIGHT: this.PRODUCT_WEIGHT,
+                PRODUCT_IMAGE:this.PRODUCT_IMAGE
+            };
+            this.$store.dispatch('patchProduct', edit);
+    },
     },
   
     computed: {

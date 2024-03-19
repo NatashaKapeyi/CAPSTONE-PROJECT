@@ -45,15 +45,14 @@ export default createStore({
       sweet({
         title: 'Register',
         text: 'User registered',
-        icon: "info",
+        icon: "success",
         timer: 3000
       })
-      router.push({name:'login'})
      }
       } catch (error) {
         sweet({
           title: 'Error',
-          text: 'Please try again later',
+          text:error.message,
           icon: "error",
           timer: 3000
         }) 
@@ -213,11 +212,11 @@ export default createStore({
   },
   async patchProduct(context, payload) {
     try{
-      let {msg} = await axios.patch(`${capstoneURL}products/patchProduct/${payload.USER_ID}`)
-      if(msg) {
+      let {msg} = await axios.patch(`${capstoneURL}products/patchProduct/${payload.PRODUCT_ID }`,payload)
+      if({msg}) {
         context.dispatch('retrieveProducts')
         sweet({
-          title: 'Update an item',
+          title: 'Updated ',
           text: msg,
           icon: "success",
           timer: 2000
@@ -226,7 +225,7 @@ export default createStore({
     }catch(e) {
       sweet({
         title: 'Error',
-        text: 'An error occurred when updating an item.',
+        text: e.message,
         icon: "error",
         timer: 2000
       }) 
@@ -234,11 +233,11 @@ export default createStore({
   },
   async deleteProduct(context, payload) {
     try{
-      let {msg} = await axios.delete(`${capstoneURL}products/deleteProduct/${payload.USER_ID}`)
-      if(msg) {
+      let {msg} = await axios.delete(`${capstoneURL}products/deleteProduct/${payload.PRODUCT_ID}`)
+      if({msg}) {
         context.dispatch('retrieveProducts')
         sweet({
-          title: 'Delete product',
+          title: 'Deleted a product',
           text: msg,
           icon: "success",
           timer: 2000
@@ -255,22 +254,20 @@ export default createStore({
   },
   async addProduct(context, payload) {
     try{
-      let {msg} = (await axios.post(`${lifeURL}products/addProduct/${payload.USER_ID}`)).data
-      if(msg) {
+      let {msg} = (await axios.post(`${capstoneURL}products/addProduct`,payload))
+      if({msg}) {
         context.dispatch('retrieveProducts')
         sweet({
-          title: 'Registration',
+          title: 'successfully added a product',
           text: msg,
           icon: "success",
           timer: 2000
         }) 
-        //  
-        router.push({name: 'login'})
       }
-    }catch(e) {
+    }catch(error) {
       sweet({
         title: 'Error',
-        text: 'Please try again later',
+        text: 'An error occured when adding a product',
         icon: "error",
         timer: 2000
       }) 
@@ -278,17 +275,16 @@ export default createStore({
   },
   async patchCart(context, payload) {
     try{
-      let {msg} = (await axios.post(`${lifeURL}cart/patchCart/${payload.USER_ID}`)).data
+      let {msg} = (await axios.post(`${capstoneURL}cart/patchCart/${payload.USER_ID}`,payload))
       if(msg) {
         context.dispatch('retrieveCart')
         sweet({
-          title: 'Updated an item',
+          title: 'successfully updated an item',
           text: msg,
           icon: "success",
           timer: 2000
         }) 
         //  
-        router.push({name: 'login'})
       }
     }catch(e) {
       sweet({
