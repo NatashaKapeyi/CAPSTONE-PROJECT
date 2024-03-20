@@ -4,29 +4,14 @@ import {hash, compare} from 'bcrypt'
 
 class Cart{
     retrieveCart(req, res){
+      const USER_ID = req.params.USER_ID;
         const Qry = `
-        SELECT 
-        p.PRODUCT_ID,
-        p.PRODUCT_NAME,
-        p.PRODUCT_CATEGORY,
-        p.PRODUCT_PRICE,
-        p.PRODUCT_QUANTITY AS PRODUCT_AVAILABLE_QUANTITY,
-    c.CART_QUANTITY AS QUANTITY_IN_CART,
-        u.USER_ID,
-        u.USER_NAME,
-        u.USER_EMAIL
-    FROM 
-        CART c
-    INNER JOIN 
-        PRODUCTS p ON c.PRODUCT_ID = p.PRODUCT_ID
-    INNER JOIN 
-        USERS u ON c.USER_ID = u.USER_ID
-    WHERE 
-        u.USER_ID = ?
-    ;
-        
-        `
-        db.query(Qry,(error, results)=>{
+        SELECT c.PRODUCT_ID, p.PRODUCT_NAME, c.CART_QUANTITY
+        FROM cart c
+        INNER JOIN products p ON c.PRODUCT_ID = p.PRODUCT_ID
+        WHERE c.USER_ID = ?;
+      `
+        db.query(Qry,[USER_ID],(error, results)=>{
             if(error)throw error
             res.json({
                 status: res.statusCode,
@@ -35,11 +20,9 @@ class Cart{
         })
     }
     async addCart(req, res){
-        let data =req.body;
-        const Qry = `INSERT INTO CART
-        SET ?;
-        `
-        db.query(Qry, [data],(error)=>{
+       const { USER_ID, PRODUCT_ID, CART_QUANTITY } = req.body;
+        const Qry = 'INSERT INTO CART (USER_ID, PRODUCT_ID, CART_QUANTITY) VALUES (?, ?, ?)';
+        db.query(Qry, [USER_ID, PRODUCT_ID, CART_QUANTITY],(error)=>{
             if(error){
             res.json({
                 status: res.statusCode,
