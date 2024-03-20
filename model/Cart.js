@@ -4,7 +4,7 @@ import {hash, compare} from 'bcrypt'
 
 class Cart{
     retrieveCart(req, res){
-      const USER_ID = req.params.userId; 
+      const USER_ID = req.params.id; 
         const Qry = `
         SELECT 
         p.PRODUCT_ID,
