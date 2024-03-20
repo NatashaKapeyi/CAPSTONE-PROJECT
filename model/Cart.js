@@ -23,7 +23,7 @@ class Cart{
     INNER JOIN 
         USERS u ON c.USER_ID = u.USER_ID
     WHERE 
-        u.USER_ID = ?
+        u.USER_ID = ${req.params.id}
     ;
         
         `
@@ -35,20 +35,20 @@ class Cart{
             })
         })
     }
-    async addCart(req, res){
-        let data =req.body;
-        const Qry = `INSERT INTO CART
-        SET ?;
-        `
-        db.query(Qry, [data],(error)=>{
-            if(error){
-            res.json({
-                status: res.statusCode,
-                msg:`Try again `
-            })
-          }
-        })
-    }
+    addCart(req,res){
+      let data =req.body;
+
+      const Qry =`INSERT INTO PRODUCTS
+      SET ?;
+      `
+      db.query(Qry,[data],(error)=>{
+          if(error)throw error
+          res.json({
+              status: res.statusCode,
+              msg: 'Successfully added to cart',
+          })
+      })
+  }
     deleteCart(req,res){
         const Qry=`DELETE FROM CART WHERE USER_ID=${req.params.id} ;`
         // const user = req.body
