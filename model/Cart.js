@@ -7,7 +7,7 @@ class Cart{
       const USER_ID = req.params.USER_ID;
         const Qry = `
         SELECT c.PRODUCT_ID, p.PRODUCT_NAME, c.CART_QUANTITY
-        FROM cart c
+        FROM CART c
         INNER JOIN products p ON c.PRODUCT_ID = p.PRODUCT_ID
         WHERE c.USER_ID = ?;
       `
