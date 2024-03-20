@@ -73,6 +73,7 @@ export default {
     // Filter products based on the searchQry
     this.filterproducts = this.products.filter(product => {
         return product.PRODUCT_NAME.toLowerCase().includes(this.searchQry.toLowerCase());
+        //else return "search something else"
     });
 }
     }

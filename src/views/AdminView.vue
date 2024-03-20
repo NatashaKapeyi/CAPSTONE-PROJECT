@@ -2,7 +2,7 @@
  <div class="container-fluid">
         <div class="row mt-5 m-4">
     <div class="col mb-3 d-flex justify-content: space-between ">
-          <input type="text" placeholder="search a product" required class="form-control w-25" data-search-product>
+      <input type="text" placeholder="search product/user details" required class="form-control w-25" v-model="searchQry">
           <button class="btn btn-success text-black " data-sort-product>SORT BY PRICE</button>
         </div>
 
@@ -71,7 +71,7 @@
           <th>Image</th>
           <th>Action</th>
         </tr>
-        <tbody v-for="item in products" :key="item.PRODUCT_ID" class="mt-3">
+        <tbody v-for="item in filterproducts" :key="item.PRODUCT_ID" class="mt-3">
           <td>{{item.PRODUCT_ID}}</td>
           <td>{{item.PRODUCT_NAME}}</td>
           <td>{{item.PRODUCT_QUANTITY}}</td>
@@ -161,7 +161,7 @@
         <th>Profile</th>
         <th>Action</th>
       </tr>
-      <tbody v-for="item in users" :key="item.USER_ID" >
+      <tbody v-for="item in filterusers" :key="item.USER_ID" >
         <td>{{item.USER_ID}}</td>
         <td>{{item.USER_NAME}}</td>
         <td>{{item.USER_LASTNAME}}</td>
@@ -183,6 +183,7 @@
 export default {
     data(){
       return{ 
+        searchQry: '',
         payload:{
       USER_NAME:'',
       USER_LASTNAME:'',
@@ -257,7 +258,28 @@ export default {
     retrieveUsers(){
      return this.$store.dispatch('retrieveUsers')
     },
-  
+    // Filter products based on search query
+    filterproducts() {
+      if (!this.products) return [];
+      return this.products.filter(item =>
+        item.PRODUCT_NAME.toLowerCase().includes(this.searchQry.toLowerCase()) ||
+        item.PRODUCT_CATEGORY.toLowerCase().includes(this.searchQry.toLowerCase()) ||
+        item.PRODUCT_PRICE.toString().includes(this.searchQry.toLowerCase()) ||
+        item.PRODUCT_QUANTITY.toString().includes(this.searchQry.toLowerCase()) ||
+        item.PRODUCT_WEIGHT.toString().includes(this.searchQry.toLowerCase())
+      );
+    },
+     // Filter users based on search query
+    filterusers() {
+      if (!this.users) return [];
+      return this.users.filter(item =>
+        item.USER_NAME.toLowerCase().includes(this.searchQry.toLowerCase()) ||
+        item.USER_LASTNAME.toLowerCase().includes(this.searchQry.toLowerCase()) ||
+        item.USER_EMAIL.toLowerCase().includes(this.searchQry.toLowerCase()) ||
+        item.USER_ROLE.toLowerCase().includes(this.searchQry.toLowerCase()) ||
+        item.USER_GENDER.toLowerCase().includes(this.searchQry.toLowerCase())
+      );
+    }
       
     },
     mounted(){
