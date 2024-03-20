@@ -59,6 +59,7 @@ export default {
     mounted() {
         this.$store.dispatch('retrieveProducts')
     },
+    props: ['product'],
     methods:{
       addCart(product){
         this.$store.dispatch('addCart', product);
