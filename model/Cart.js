@@ -4,7 +4,6 @@ import {hash, compare} from 'bcrypt'
 
 class Cart{
     retrieveCart(req, res){
-      const USER_ID = req.params.USER_ID; 
         const Qry = `
         SELECT 
         p.PRODUCT_ID,
@@ -23,11 +22,11 @@ class Cart{
     INNER JOIN 
         USERS u ON c.USER_ID = u.USER_ID
     WHERE 
-        u.USER_ID = ${req.params.id}
+        u.USER_ID = u.USER_ID
     ;
         
         `
-        db.query(Qry,[USER_ID],(error, results)=>{
+        db.query(Qry,(error, results)=>{
             if(error)throw error
             res.json({
                 status: res.statusCode,
@@ -35,20 +34,20 @@ class Cart{
             })
         })
     }
-    addCart(req,res){
-      let data =req.body;
-
-      const Qry =`INSERT INTO PRODUCTS
-      SET ?;
-      `
-      db.query(Qry,[data],(error)=>{
-          if(error)throw error
-          res.json({
-              status: res.statusCode,
-              msg: 'Successfully added to cart',
-          })
-      })
-  }
+    async addCart(req, res){
+        let data =req.body;
+        const Qry = `INSERT INTO CART
+        SET ?;
+        `
+        db.query(Qry, [data],(error)=>{
+            if(error){
+            res.json({
+                status: res.statusCode,
+                msg:`Try again `
+            })
+          }
+        })
+    }
     deleteCart(req,res){
         const Qry=`DELETE FROM CART WHERE USER_ID=${req.params.id} ;`
         // const user = req.body
