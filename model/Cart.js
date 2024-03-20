@@ -4,6 +4,7 @@ import {hash, compare} from 'bcrypt'
 
 class Cart{
     retrieveCart(req, res){
+      const USER_ID = req.params.userId; 
         const Qry = `
         SELECT 
         p.PRODUCT_ID,
@@ -22,11 +23,11 @@ class Cart{
     INNER JOIN 
         USERS u ON c.USER_ID = u.USER_ID
     WHERE 
-        u.USER_ID = u.USER_ID
+        u.USER_ID = ?
     ;
         
         `
-        db.query(Qry,(error, results)=>{
+        db.query(Qry,[USER_ID],(error, results)=>{
             if(error)throw error
             res.json({
                 status: res.statusCode,
