@@ -8,7 +8,7 @@ class Cart{
         const Qry = `
         SELECT c.PRODUCT_ID, p.PRODUCT_NAME, c.CART_QUANTITY
         FROM CART c
-        INNER JOIN products p ON c.PRODUCT_ID = p.PRODUCT_ID
+        INNER JOIN PRODUCTS p ON c.PRODUCT_ID = p.PRODUCT_ID
         WHERE c.USER_ID = ?;
       `
         db.query(Qry,[USER_ID],(error, results)=>{
