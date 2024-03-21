@@ -6,16 +6,16 @@ class Cart{
     retrieveCart(req, res){
       const USER_ID = req.params.USER_ID;
         const Qry = `
-        SELECT c.PRODUCT_ID, p.PRODUCT_NAME, c.CART_QUANTITY
-        FROM CART c
-        INNER JOIN PRODUCTS p ON c.PRODUCT_ID = p.PRODUCT_ID
-        WHERE c.USER_ID = ?;
+        SELECT P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_CATEGORY, P.PRODUCT_PRICE, P.PRODUCT_QUANTITY, P.PRODUCT_WEIGHT, P.PRODUCT_IMAGE, C.CART_QUANTITY
+        FROM CART C
+                    INNER JOIN PRODUCTS P ON C.PRODUCT_ID = P.PRODUCT_ID
+        WHERE C.USER_ID =${USER_ID};
       `
-        db.query(Qry,[USER_ID],(error, results)=>{
-            if(error)throw error
-            res.json({
-                status: res.statusCode,
-                results
+      db.query(Qry, (error, results) => {
+        if (error) throw error;
+        res.json({
+            status: res.statusCode,
+            results
             })
         })
     }
