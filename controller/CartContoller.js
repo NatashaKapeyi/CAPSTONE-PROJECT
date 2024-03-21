@@ -18,8 +18,7 @@ CartRouter.get('user/:id/cart',(req, res)=>{
 })
 CartRouter.post('/user/:id/addCart',bodyParser.json(),(req, res)=>{
     try {
-        const USER_ID = req.params.id;
-        cart.addCart(USER_ID, req.body, res)
+        cart.addCart(req, res)
     } catch (error) {
         res.json({
             status: res.statusCode,

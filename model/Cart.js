@@ -20,7 +20,7 @@ class Cart{
         })
     }
     async addCart(req, res){
-      const { USER_ID } = req.params; // Extract USER_ID from req.params
+      const { USER_ID } = req.params.id; // Extract USER_ID from req.params
       const { PRODUCT_ID, CART_QUANTITY } = req.body; // Extract PRODUCT_ID and CART_QUANTITY from req.body
   
         const Qry = 'INSERT INTO CART (USER_ID, PRODUCT_ID, CART_QUANTITY) VALUES (?, ?, ?)';
