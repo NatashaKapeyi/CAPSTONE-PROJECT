@@ -29,7 +29,8 @@ CartRouter.patch('/patchCart/:id',bodyParser.json(),(req, res)=>{
 })
 CartRouter.post('/user/:id/addCart',bodyParser.json(),(req, res)=>{
     try {
-        cart.addCart(req, res)
+        const USER_ID = req.params.id;
+        cart.addCart(USER_ID, req.body, res)
     } catch (error) {
         res.json({
             status: res.statusCode,
