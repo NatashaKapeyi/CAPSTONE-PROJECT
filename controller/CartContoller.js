@@ -6,7 +6,7 @@ import { verifyToken } from '../middleware/AuthenticateUser.js'
 const CartRouter = express.Router()
 
 //Fetch cart items
-CartRouter.get('/',(req, res)=>{
+CartRouter.get('user/:id/cart',(req, res)=>{
     try {
         cart.retrieveCart(req, res)
     } catch (error) {
