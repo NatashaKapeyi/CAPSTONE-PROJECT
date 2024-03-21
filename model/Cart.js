@@ -34,9 +34,10 @@ class Cart{
     }
     async addCart(req, res){
         let data =req.body;
-        const { PRODUCT_ID, CART_QUANTITY, USER_ID } = data;
-        const Qry = `INSERT INTO CART (PRODUCT_ID, CART_QUANTITY, USER_ID) VALUES (?, ?, ?);`
-        db.query(Qry,[PRODUCT_ID, CART_QUANTITY, USER_ID],(error)=>{
+        const Qry = `INSERT INTO CART
+        SET ?;
+        `
+        db.query(Qry, [data],(error)=>{
             if(error){
             res.json({
                 status: res.statusCode,
