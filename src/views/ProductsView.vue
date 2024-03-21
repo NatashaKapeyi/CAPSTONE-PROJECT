@@ -5,7 +5,7 @@
                 <input type="text" v-model="searchQry" @input="search" placeholder="Search product by name" class="form-control">
             </div>
             <div class="col">
-                <button class="btn btn-success">Sorting by price</button>
+                <button class="btn btn-success" @click="sortByPrice">Sorting by price</button>
             </div>
         </div>
         <div class="row" v-if="products">
@@ -53,7 +53,8 @@ export default {
     },
     data() {
         return {
-            searchQry: ''
+            searchQry: '',
+            sortDirection: 'asc' //initial sort
         };
     },
     mounted() {
@@ -76,7 +77,20 @@ export default {
         return product.PRODUCT_NAME.toLowerCase().includes(this.searchQry.toLowerCase());
         //else return "search something else"
     });
-}
+},
+sortByPrice() {
+            // Toggle sort direction
+            this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+
+            // Sort products by price
+            this.filterproducts.sort((a, b) => {
+                if (this.sortDirection === 'asc') {
+                    return a.PRODUCT_PRICE - b.PRODUCT_PRICE;
+                } else {
+                    return b.PRODUCT_PRICE - a.PRODUCT_PRICE;
+                }
+            });
+        }
     }
 }
 </script>

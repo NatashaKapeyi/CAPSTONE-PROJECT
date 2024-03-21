@@ -335,7 +335,7 @@ export default createStore({
   },
   async addCart(context, payload) {
     try{
-      let {msg} = (await axios.post(`${capstoneURL}cart/addCart`,payload))
+      let {msg} = (await axios.post(`${capstoneURL}cart/addCart`,payload)).data
       if({msg}) {
         context.dispatch('retrieveCart')
         sweet({

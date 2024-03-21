@@ -26,10 +26,10 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link active" to="/admin"> Admin</router-link>
+          <router-link class="nav-link active" to="/cart"> Checkout</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link active" to="/cart"> Checkout</router-link>
+          <router-link class="nav-link active" to="/admin"> Admin</router-link>
         </li>
         <li>
         <router-link class="nav-link active" to="/contact">Contact</router-link>

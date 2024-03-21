@@ -52,7 +52,7 @@ const routes = [
   },
   {
     path:'/logout',
-    name:'logoutrview',
+    name:'logoutview',
     component:()=> import('@/views/LogoutView.vue')
   }
 
