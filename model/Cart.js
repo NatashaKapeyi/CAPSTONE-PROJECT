@@ -22,7 +22,7 @@ class Cart{
     INNER JOIN 
         USERS u ON c.USER_ID = u.USER_ID
     WHERE 
-        u.USER_ID = u.USER_ID
+        u.USER_ID = ${req.params.id}
     ;
         
         `
@@ -43,7 +43,7 @@ class Cart{
             if(error){
             res.json({
                 status: res.statusCode,
-                msg:`Try again `
+                msg:error.message
             })
           }
         })
