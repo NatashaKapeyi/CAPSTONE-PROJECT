@@ -32,10 +32,6 @@ app.use(
 app.get('^/$|/capstone-project',(req, res)=>{
     res.status(200).sendFile(path.join(__dirname,"./static/index.html"))
 })
-app.use(cors({
-    origin: "http://localhost:8080/",
-    credentials: true
-  }));
 app.use('/users',userRouter)
 app.use('/products',Router)
 app.use('/cart',CartRouter)
