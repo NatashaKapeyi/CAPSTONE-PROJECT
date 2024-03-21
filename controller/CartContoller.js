@@ -16,17 +16,6 @@ CartRouter.get('user/:id/cart',(req, res)=>{
         })
     }
 })
-//editing cart items
-CartRouter.patch('/patchCart/:id',bodyParser.json(),(req, res)=>{
-    try {
-        cart.patchCart(req, res)
-    } catch (error) {
-        res.json({
-            status: res.statusCode,
-            msg:'Failed to update cart item'
-        })
-    }
-})
 CartRouter.post('/user/:id/addCart',bodyParser.json(),(req, res)=>{
     try {
         const USER_ID = req.params.id;
@@ -35,6 +24,17 @@ CartRouter.post('/user/:id/addCart',bodyParser.json(),(req, res)=>{
         res.json({
             status: res.statusCode,
             msg:'Failed to add a product item '
+        })
+    }
+})
+//editing cart items
+CartRouter.patch('/patchCart/:id',bodyParser.json(),(req, res)=>{
+    try {
+        cart.patchCart(req, res)
+    } catch (error) {
+        res.json({
+            status: res.statusCode,
+            msg:'Failed to update cart item'
         })
     }
 })
