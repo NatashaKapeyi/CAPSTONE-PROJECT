@@ -25,7 +25,8 @@ function verifyToken (req, res, next){
     //Retrieve token from the browser
     const token = req?.headers['authorization']
     if(token) {
-        if(verify(token, process.env.SECRET_KEY)){
+        if(verify(token, process.env.SECRET_KEY,(err, decoded))){
+            req.user = decoded;
             next()
         }else {
             res?.json({
