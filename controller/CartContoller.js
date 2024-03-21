@@ -6,23 +6,13 @@ import { verifyToken } from '../middleware/AuthenticateUser.js'
 const CartRouter = express.Router()
 
 //Fetch cart items
-CartRouter.get('user/:id/cart',(req, res)=>{
+CartRouter.get('/',(req, res)=>{
     try {
         cart.retrieveCart(req, res)
     } catch (error) {
         res.json({
             status: res.statusCode,
             msg:'Failed to retrieve cart items'
-        })
-    }
-})
-CartRouter.post('/user/:id/addCart',bodyParser.json(),(req, res)=>{
-    try {
-        cart.addCart(req, res)
-    } catch (error) {
-        res.json({
-            status: res.statusCode,
-            msg:'Failed to add a product item '
         })
     }
 })
@@ -34,6 +24,16 @@ CartRouter.patch('/patchCart/:id',bodyParser.json(),(req, res)=>{
         res.json({
             status: res.statusCode,
             msg:'Failed to update cart item'
+        })
+    }
+})
+CartRouter.post('/addCart',bodyParser.json(),(req, res)=>{
+    try {
+        cart.addCart(req, res)
+    } catch (error) {
+        res.json({
+            status: res.statusCode,
+            msg:'Failed to add a product item '
         })
     }
 })
