@@ -20,13 +20,13 @@
         <li class="nav-item">
           <router-link class="nav-link active" to="/about">About</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-show="loggedUser">
           <router-link class="nav-link active" to="/products">
             Products
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link active" to="/cart"> Checkout</router-link>
+          <router-link class="nav-link active" to="/cart">Cart</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link active" to="/admin"> Admin</router-link>
@@ -63,8 +63,14 @@
 
 
 <script>
+import { useCookies } from 'vue3-cookies';
+const {cookies} = useCookies()
     export default {
-        
+        computed: {
+          loggedUser() {
+            return cookies.get('LegitUser').result
+          }
+        }
     }
 </script>
 

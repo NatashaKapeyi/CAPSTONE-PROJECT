@@ -1,5 +1,5 @@
 <template>
- <div class="container-fluid">
+ <div class="container-fluid word-break">
         <div class="row mt-5 m-4">
     <div class="col mb-3 d-flex justify-content: space-between ">
       <input type="text" placeholder="search product/user details" required class="form-control w-25" v-model="searchQry">

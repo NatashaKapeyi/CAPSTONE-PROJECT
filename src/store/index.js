@@ -14,7 +14,8 @@ export default createStore({
     user: null,
     products: null,
     product: null,
-    cart:null
+    cart:null,
+    productCount: 0
   },
   getters: {
   },
@@ -190,8 +191,9 @@ export default createStore({
   },
   async retrieveProduct(context, payload) {
     try{
-      let {result} = (await axios.get(`${capstoneURL}products/${payload.USER_ID}`)).data
+      let {result} = (await axios.get(`${capstoneURL}products/${payload.id}`)).data
       if(result) {
+        console.log(result);
         context.commit('setProduct', result)
       }else {
         sweet({
@@ -204,7 +206,7 @@ export default createStore({
     }catch(e) {
       sweet({
         title: 'Error',
-        text: 'A product was not found.',
+        text: e.message,
         icon: "error",
         timer: 2000
       }) 
@@ -275,7 +277,7 @@ export default createStore({
   },
   async patchCart(context, payload) {
     try{
-      let {msg} = (await axios.post(`${capstoneURL}cart/patchCart/${payload.USER_ID}`,payload))
+      let {msg} = (await axios.post(`${capstoneURL}cart/user/${payload.USER_ID}/patchCart/${payload.CART_ID}`,payload))
       if(msg) {
         context.dispatch('retrieveCart')
         sweet({
@@ -297,7 +299,8 @@ export default createStore({
   },
   async retrieveCart(context){
     try {
-      let {results} = (await axios.get(`${capstoneURL}cart`)).data
+      const result = cookies.get('LegitUser').result
+      let {results} = (await axios.get(`${capstoneURL}cart/user/${result.USER_ID}`)).data
       console.log(results);
       if(results){
         context.commit('setCart', results)
@@ -314,7 +317,7 @@ export default createStore({
   },
   async deleteCart(context, payload) {
     try{
-      let {msg} = await axios.delete(`${capstoneURL}cart/deleteCart/${payload.USER_ID}`)
+      let {msg} = await axios.delete(`${capstoneURL}cart/user/${payload.USER_ID}/deleteCart`)
       if(msg) {
         context.dispatch('retrieveCart')
         sweet({
@@ -335,8 +338,10 @@ export default createStore({
   },
   async addCart(context, payload) {
     try{
-      let {msg} = (await axios.post(`${capstoneURL}cart/addCart`,payload)).data
-      if({msg}) {
+      let result = cookies.get('LegitUser').result
+      const cartData = Object.assign({}, {USER_ID: result.USER_ID}, {PRODUCT_ID: payload.PRODUCT_ID}, {CART_QUANTITY: context.state?.productCount})
+      console.log(cartData);
+      let {msg} = (await axios.post(`${capstoneURL}cart/${result.USER_ID}/addCart`,cartData)).data
         context.dispatch('retrieveCart')
         sweet({
           title: 'successfully added to cart',
@@ -344,7 +349,6 @@ export default createStore({
           icon: "success",
           timer: 2000
         }) 
-      }
     }catch(error) {
       sweet({
         title: 'Error',

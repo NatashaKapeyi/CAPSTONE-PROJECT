@@ -20,4 +20,8 @@
         width: 18rem;
         margin: .5rem;
     }
+    
+    .card-header,.card-body{
+    background-color: inherit;
+    }
 </style>
