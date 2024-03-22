@@ -43,7 +43,7 @@ class Cart{
             if(error){
             res.json({
                 status: res.statusCode,
-                msg:`Try again `
+                msg: error.message
             })
           }
         })
