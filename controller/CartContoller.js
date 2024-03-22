@@ -27,7 +27,7 @@ CartRouter.patch('/patchCart/:id',bodyParser.json(),(req, res)=>{
         })
     }
 })
-CartRouter.post('/addCart',bodyParser.json(),(req, res)=>{
+CartRouter.post('/:id/addCart',bodyParser.json(),(req, res)=>{
     try {
         cart.addCart(req, res)
     } catch (error) {
