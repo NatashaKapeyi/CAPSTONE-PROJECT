@@ -67,7 +67,7 @@ class Cart{
         const Qry=`
         UPDATE CART
         SET ?
-        WHERE CART_ID = ${req.params.id};`
+        WHERE USER_ID = ${req.params.id};`
         db.query(Qry, [data], (error)=>{
           if(error) throw error
           res.json({
