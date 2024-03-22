@@ -49,7 +49,10 @@ class Cart{
         })
     }
     deleteCart(req,res){
-        const Qry=`DELETE FROM CART WHERE USER_ID=${req.params.id} ;`
+        const Qry=`
+        DELETE FROM CART 
+        WHERE USER_ID=${req.params.id}
+        AND CART_ID = ${req.params.cID};`
         // const user = req.body
         db.query(Qry, (error)=>{
           if(error) throw error
@@ -67,7 +70,8 @@ class Cart{
         const Qry=`
         UPDATE CART
         SET ?
-        WHERE USER_ID = ${req.params.id};`
+        WHERE USER_ID = ${req.params.id}
+        AND CART_ID = ${req.params.cID};`
         db.query(Qry, [data], (error)=>{
           if(error) throw error
           res.json({

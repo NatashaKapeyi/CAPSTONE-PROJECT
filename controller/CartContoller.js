@@ -17,7 +17,7 @@ CartRouter.get('/user/:id',(req, res)=>{
     }
 })
 //editing cart items
-CartRouter.patch('/patchCart/:id',bodyParser.json(),(req, res)=>{
+CartRouter.patch('/user/:id/patchCart/:cID',bodyParser.json(),(req, res)=>{
     try {
         cart.patchCart(req, res)
     } catch (error) {
@@ -37,7 +37,7 @@ CartRouter.post('/:id/addCart',bodyParser.json(),(req, res)=>{
         })
     }
 })
-CartRouter.delete('/deleteCart/:id',bodyParser.json(),(req, res)=>{
+CartRouter.delete('/user/:id/deleteCart',bodyParser.json(),(req, res)=>{
     try {
         cart.deleteCart(req, res)
     } catch (error) {
