@@ -5,7 +5,7 @@
                     class="bi bi-truck text-black fs-3"></i></router-link>
         </div>
     </div>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg sticky-top">
   <div class="container-fluid">
    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,8 +39,8 @@
         </li>
       </ul>
       <form class="d-flex " role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> 
+         <button class="btn btn-outline-success" type="submit"> <i class="bi bi-search"></i></button>
         
       </form>
     </div>

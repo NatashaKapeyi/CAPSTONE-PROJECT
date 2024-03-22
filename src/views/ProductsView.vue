@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             <div class="col">
                 <input type="text" v-model="searchQry" @input="search" placeholder="Search product by name" class="form-control">
             </div>
@@ -63,6 +63,7 @@ export default {
     props: ['product'],
     methods:{
       addCart(product){
+         console.log("Product object:", product);
         this.$store.dispatch('addCart', product);
         console.log(`Added ${product.PRODUCT_NAME} to cart.`)
       } ,
